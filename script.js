@@ -10,4 +10,8 @@ function getCompChoice(choiceNumber) {
     console.log("Scissor");
   }
 }
+
+var playerChoice = prompt("Which do you choose, Rock, Paper or Scissors?");
+
 getCompChoice(choiceNumber);
+console.log(playerChoice);
