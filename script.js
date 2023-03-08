@@ -1,6 +1,9 @@
+// Written by Bradley Hill, 08/03/2023 for The Odin Project - Rock,Paper,Scissors exercise.
+
 let score = 0;
 let compChoice = null;
 
+// Random selection for ComputerPlayer
 function getCompChoice() {
   let choiceNumber = Math.floor(Math.random() * (4 - 1)) + 1;
   if (choiceNumber == 1) {
@@ -13,12 +16,14 @@ function getCompChoice() {
   return compChoice;
 }
 
+// Player Selection for the game.
 function getPlayerChoice() {
   var playerPrompt = prompt("Which do you choose, ROCK, PAPER or SCISSOR?");
   var playerChoice = playerPrompt.toUpperCase();
   return playerChoice;
 }
 
+// Outcomes and Outputs for a single round of the game.
 function playOneRound(compChoice, playerChoice) {
   if (compChoice == playerChoice) {
     console.log("Bad luck!That's a draw!");
@@ -40,6 +45,7 @@ function playOneRound(compChoice, playerChoice) {
   }
 }
 
+// 5 Rounds of the game with players final score.
 function playGame() {
   for (let i = 0; i < 6; i++) {
     getCompChoice();
