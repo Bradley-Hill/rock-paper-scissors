@@ -19,7 +19,7 @@ function getPlayerChoice() {
   return playerChoice;
 }
 
-function oneRound(compChoice, playerChoice) {
+function playOneRound(compChoice, playerChoice) {
   if (compChoice == playerChoice) {
     console.log("Bad luck!That's a draw!");
   } else if (compChoice == "ROCK" && playerChoice == "PAPER") {
@@ -40,13 +40,13 @@ function oneRound(compChoice, playerChoice) {
   }
 }
 
-function game() {
+function playGame() {
   for (let i = 0; i < 6; i++) {
     getCompChoice();
     let playerChoice = getPlayerChoice();
-    oneRound(compChoice, playerChoice);
+    playOneRound(compChoice, playerChoice);
   }
   console.log("Congratulations, your final score is: " + score);
 }
 
-game();
+playGame();
