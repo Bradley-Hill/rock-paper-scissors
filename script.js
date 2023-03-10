@@ -25,34 +25,50 @@ function getPlayerChoice() {
 
 // Outcomes and Outputs for a single round of the game.
 function playOneRound(compChoice, playerChoice) {
+  const resultDiv = document.querySelector(".results");
+
   if (compChoice == playerChoice) {
-    console.log("Bad luck!That's a draw!");
+    resultDiv.textContent = "Bad luck!That's a draw!";
   } else if (compChoice == "ROCK" && playerChoice == "PAPER") {
-    console.log("Well done, Paper beats Rock!");
+    resultDiv.textContent = "Well done, Paper beats Rock!";
     score++;
   } else if (compChoice == "SCISSOR" && playerChoice == "PAPER") {
-    console.log("Unlucky, Paper loses to Scissor...");
+    resultDiv.textContent = "Unlucky, Paper loses to Scissor...";
   } else if (compChoice == "PAPER" && playerChoice == "ROCK") {
-    console.log("Unlucky, Rock loses to Paper...");
+    resultDiv.textContent = "Unlucky, Rock loses to Paper...";
   } else if (compChoice == "SCISSOR" && playerChoice == "ROCK") {
-    console.log("Well done, Rock beats Scissors!");
+    resultDiv.textContent = "Well done, Rock beats Scissors!";
     score++;
   } else if (compChoice == "PAPER" && playerChoice == "SCISSOR") {
-    console.log("Well done, Scissor beats Paper!");
+    resultDiv.textContent = "Well done, Scissor beats Paper!";
     score++;
   } else if (compChoice == "ROCK" && playerChoice == "SCISSOR") {
-    console.log("Unlucky, Scissor loses to Rock, you lost...");
+    resultDiv.textContent = "Unlucky, Scissor loses to Rock, you lost...";
   }
+  updateScore();
 }
 
 // 5 Rounds of the game with players final score.
-function playGame() {
-  for (let i = 0; i < 6; i++) {
-    getCompChoice();
-    let playerChoice = getPlayerChoice();
-    playOneRound(compChoice, playerChoice);
-  }
-  console.log("Congratulations, your final score is: " + score);
-}
+// function playGame() {
+//   for (let i = 0; i < 6; i++) {
+//     getCompChoice();
+//     let playerChoice = getPlayerChoice();
+//     playOneRound(compChoice, playerChoice);
+//   }
+//   console.log("Congratulations, your final score is: " + score);
+// }
 
-playGame();
+const buttons = document.querySelectorAll("button");
+buttons.forEach((button) => {
+  button.addEventListener("click", () => {
+    const computerChoice = getCompChoice();
+    const playerChoice = button.value;
+    playOneRound(computerChoice, playerChoice);
+  });
+});
+const scoreElement = document.querySelector(".score");
+scoreElement.textContent = `Score: ${score}`;
+
+function updateScore() {
+  scoreElement.textContent = `Score: ${score}`;
+}
