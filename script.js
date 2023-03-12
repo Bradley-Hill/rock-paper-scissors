@@ -45,16 +45,7 @@ function playOneRound(compChoice, playerChoice) {
   updateScore();
 }
 
-// 5 Rounds of the game with players final score.
-// function playGame() {
-//   for (let i = 0; i < 6; i++) {
-//     getCompChoice();
-//     let playerChoice = getPlayerChoice();
-//     playOneRound(compChoice, playerChoice);
-//   }
-//   console.log("Congratulations, your final score is: " + score);
-// }
-
+// Create buttons for selecting player choice.
 const buttons = document.querySelectorAll("button");
 buttons.forEach((button) => {
   button.addEventListener("click", () => {
@@ -63,13 +54,14 @@ buttons.forEach((button) => {
     playOneRound(computerChoice, playerChoice);
   });
 });
-const scoreElement = document.querySelector(".score");
-scoreElement.textContent = `Score: ${score}`;
-// const compScoreElement = document.querySelector(".score");
-// compScoreElement.textContent = `Computer Score: ${compScore}`;
 
+//Display scores
+const scoreElement = document.querySelector(".score");
+scoreElement.textContent = `Score: ${score} - Computer Score: ${compScore}`;
+
+// Tracking the scores during the game.
 function updateScore() {
-  scoreElement.textContent = `Score: ${score}`;
+  scoreElement.textContent = `Score: ${score} - Computer Score: ${compScore}`;
   if (score >= 5) {
     alert("Well Done, you win! Stupid computer...");
     score = 0;
