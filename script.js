@@ -1,6 +1,7 @@
 // Written by Bradley Hill, 08/03/2023 for The Odin Project - Rock,Paper,Scissors exercise.
 
 let score = 0;
+let compScore = 0;
 let compChoice = null;
 
 // Random selection for ComputerPlayer
@@ -16,13 +17,6 @@ function getCompChoice() {
   return compChoice;
 }
 
-// Player Selection for the game.
-function getPlayerChoice() {
-  var playerPrompt = prompt("Which do you choose, ROCK, PAPER or SCISSOR?");
-  var playerChoice = playerPrompt.toUpperCase();
-  return playerChoice;
-}
-
 // Outcomes and Outputs for a single round of the game.
 function playOneRound(compChoice, playerChoice) {
   const resultDiv = document.querySelector(".results");
@@ -34,8 +28,10 @@ function playOneRound(compChoice, playerChoice) {
     score++;
   } else if (compChoice == "SCISSOR" && playerChoice == "PAPER") {
     resultDiv.textContent = "Unlucky, Paper loses to Scissor...";
+    compScore++;
   } else if (compChoice == "PAPER" && playerChoice == "ROCK") {
     resultDiv.textContent = "Unlucky, Rock loses to Paper...";
+    compScore++;
   } else if (compChoice == "SCISSOR" && playerChoice == "ROCK") {
     resultDiv.textContent = "Well done, Rock beats Scissors!";
     score++;
@@ -44,6 +40,7 @@ function playOneRound(compChoice, playerChoice) {
     score++;
   } else if (compChoice == "ROCK" && playerChoice == "SCISSOR") {
     resultDiv.textContent = "Unlucky, Scissor loses to Rock, you lost...";
+    compScore++;
   }
   updateScore();
 }
@@ -68,7 +65,18 @@ buttons.forEach((button) => {
 });
 const scoreElement = document.querySelector(".score");
 scoreElement.textContent = `Score: ${score}`;
+// const compScoreElement = document.querySelector(".score");
+// compScoreElement.textContent = `Computer Score: ${compScore}`;
 
 function updateScore() {
   scoreElement.textContent = `Score: ${score}`;
+  if (score >= 5) {
+    alert("Well Done, you win! Stupid computer...");
+    score = 0;
+    compScore = 0;
+  } else if (compScore >= 5) {
+    alert("You lost, the Computer has beaten your big wet human brain!");
+    score = 0;
+    compScore = 0;
+  }
 }
